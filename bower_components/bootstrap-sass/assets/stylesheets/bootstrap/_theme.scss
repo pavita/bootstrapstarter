@@ -11,7 +11,9 @@
 @import "variables";
 @import "mixins";
 
-
+body.fixed-top {
+    padding-top: 50px;
+}
 ////
 //// Buttons
 //// --------------------------------------------------
