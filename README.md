@@ -1,5 +1,8 @@
 TWENTYSIX Bootstrap Project starter pack
 ---------------------------------------------
-- Bootstrap SASS v3.3.6
+- Bootstrap SASS v3.3.7
+- SASS Custom Style 
+- Flexslider
 - Codekit setup
-- index.html
+- index.html Fixed Top navbar
+
