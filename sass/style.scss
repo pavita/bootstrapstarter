@@ -3,3 +3,23 @@
 body.fixed-top {
   padding-top: 51px;
 }
+/* Shrink wrap strategy 1 */
+.easyzoom {
+  float: left;
+}
+.easyzoom img {
+  display: block;
+}
+
+
+/* Shrink wrap strategy 2 */
+.easyzoom {
+  display: inline-block;
+}
+.easyzoom img {
+  vertical-align: bottom;
+}
+.img-responsive {
+  min-width: 100% !important;
+
+}
