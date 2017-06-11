@@ -15,24 +15,6 @@
 		"oAP": "\/.codeclimate.yml",
 		"oF": 0
 		},
-	"\/.csslintrc": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/.csslintrc",
-		"oF": 0
-		},
-	"\/.eslintignore": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/.eslintignore",
-		"oF": 0
-		},
-	"\/.eslintrc": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/.eslintrc",
-		"oF": 0
-		},
 	"\/.gitignore": {
 		"ft": 8192,
 		"oA": 2,

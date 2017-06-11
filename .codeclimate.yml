@@ -1,29 +1,26 @@
 engines:
+  rubocop:
+    enabled: false
+    #checks:
+    #	Rubocop/Metrics/ClassLength:
+    #  	enabled: false
+  golint:
+   	enabled: false
+  eslint:
+    enabled: true
   csslint:
     enabled: true
   duplication:
     enabled: true
     config:
       languages:
-      - ruby
-      - javascript
-      - python
-      - php
-  eslint:
-    enabled: true
-  fixme:
-    enabled: true
- scss-lint:
-    enabled: true
+      - javascript:
+      - php:
 ratings:
   paths:
+  - css/**
+  - scripts/**
   - "**.css"
-  - "**.inc"
   - "**.js"
-  - "**.jsx"
-  - "**.module"
-  - "**.php"
-  - "**.py"
-  - "**.rb"
 exclude_paths:
 - "bower_components/"
