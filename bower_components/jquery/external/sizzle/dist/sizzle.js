@@ -152,7 +152,7 @@ var i,
 
 	// CSS string/identifier serialization
 	// https://drafts.csswg.org/cssom/#common-serializing-idioms
-    rcssescape = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\0-\x1f\x7f-\uFFFF\w-]/g,
+	rcssescape = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\0-\x1f\x7f-\uFFFF\w-]/g,
 	fcssescape = function( ch, asCodePoint ) {
 		if ( asCodePoint ) {
 
@@ -179,7 +179,7 @@ var i,
 
 	disabledAncestor = addCombinator(
 		function( elem ) {
-            return elem.disabled === true && ("form" in elem || "label" in elem);
+			return elem.disabled === true && ("form" in elem || "label" in elem);
 		},
 		{ dir: "parentNode", next: "legend" }
 	);
@@ -466,53 +466,53 @@ function createButtonPseudo( type ) {
  */
 function createDisabledPseudo( disabled ) {
 
-    // Known :disabled false positives: fieldset[disabled] > legend:nth-of-type(n+2) :can-disable
+	// Known :disabled false positives: fieldset[disabled] > legend:nth-of-type(n+2) :can-disable
 	return function( elem ) {
 
-        // Only certain elements can match :enabled or :disabled
-        // https://html.spec.whatwg.org/multipage/scripting.html#selector-enabled
-        // https://html.spec.whatwg.org/multipage/scripting.html#selector-disabled
-        if ("form" in elem) {
+		// Only certain elements can match :enabled or :disabled
+		// https://html.spec.whatwg.org/multipage/scripting.html#selector-enabled
+		// https://html.spec.whatwg.org/multipage/scripting.html#selector-disabled
+		if ( "form" in elem ) {
 
-            // Check for inherited disabledness on relevant non-disabled elements:
-            // * listed form-associated elements in a disabled fieldset
-            //   https://html.spec.whatwg.org/multipage/forms.html#category-listed
-            //   https://html.spec.whatwg.org/multipage/forms.html#concept-fe-disabled
-            // * option elements in a disabled optgroup
-            //   https://html.spec.whatwg.org/multipage/forms.html#concept-option-disabled
-            // All such elements have a "form" property.
-            if (elem.parentNode && elem.disabled === false) {
+			// Check for inherited disabledness on relevant non-disabled elements:
+			// * listed form-associated elements in a disabled fieldset
+			//   https://html.spec.whatwg.org/multipage/forms.html#category-listed
+			//   https://html.spec.whatwg.org/multipage/forms.html#concept-fe-disabled
+			// * option elements in a disabled optgroup
+			//   https://html.spec.whatwg.org/multipage/forms.html#concept-option-disabled
+			// All such elements have a "form" property.
+			if ( elem.parentNode && elem.disabled === false ) {
 
-                // Option elements defer to a parent optgroup if present
-                if ("label" in elem) {
-                    if ("label" in elem.parentNode) {
-                        return elem.parentNode.disabled === disabled;
-                    } else {
-                        return elem.disabled === disabled;
-                    }
-                }
+				// Option elements defer to a parent optgroup if present
+				if ( "label" in elem ) {
+					if ( "label" in elem.parentNode ) {
+						return elem.parentNode.disabled === disabled;
+					} else {
+						return elem.disabled === disabled;
+					}
+				}
 
-                // Support: IE 6 - 11
-                // Use the isDisabled shortcut property to check for disabled fieldset ancestors
-                return elem.isDisabled === disabled ||
+				// Support: IE 6 - 11
+				// Use the isDisabled shortcut property to check for disabled fieldset ancestors
+				return elem.isDisabled === disabled ||
 
-                    // Where there is no isDisabled, check manually
-                    /* jshint -W018 */
-                    elem.isDisabled !== !disabled &&
-                    disabledAncestor(elem) === disabled;
-            }
+					// Where there is no isDisabled, check manually
+					/* jshint -W018 */
+					elem.isDisabled !== !disabled &&
+						disabledAncestor( elem ) === disabled;
+			}
 
-            return elem.disabled === disabled;
+			return elem.disabled === disabled;
 
-            // Try to winnow out elements that can't be disabled before trusting the disabled property.
-            // Some victims get caught in our net (label, legend, menu, track), but it shouldn't
-            // even exist on them, let alone have a boolean value.
-        } else if ("label" in elem) {
-            return elem.disabled === disabled;
-        }
+		// Try to winnow out elements that can't be disabled before trusting the disabled property.
+		// Some victims get caught in our net (label, legend, menu, track), but it shouldn't
+		// even exist on them, let alone have a boolean value.
+		} else if ( "label" in elem ) {
+			return elem.disabled === disabled;
+		}
 
-        // Remaining elements are neither :enabled nor :disabled
-        return false;
+		// Remaining elements are neither :enabled nor :disabled
+		return false;
 	};
 }
 
@@ -628,7 +628,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 		return !document.getElementsByName || !document.getElementsByName( expando ).length;
 	});
 
-    // ID filter and find
+	// ID filter and find
 	if ( support.getById ) {
 		Expr.filter["ID"] = function( id ) {
 			var attrId = id.replace( runescape, funescape );
@@ -636,12 +636,12 @@ setDocument = Sizzle.setDocument = function( node ) {
 				return elem.getAttribute("id") === attrId;
 			};
 		};
-        Expr.find["ID"] = function (id, context) {
-            if (typeof context.getElementById !== "undefined" && documentIsHTML) {
-                var elem = context.getElementById(id);
-                return elem ? [elem] : [];
-            }
-        };
+		Expr.find["ID"] = function( id, context ) {
+			if ( typeof context.getElementById !== "undefined" && documentIsHTML ) {
+				var elem = context.getElementById( id );
+				return elem ? [ elem ] : [];
+			}
+		};
 	} else {
 		Expr.filter["ID"] =  function( id ) {
 			var attrId = id.replace( runescape, funescape );
@@ -652,35 +652,35 @@ setDocument = Sizzle.setDocument = function( node ) {
 			};
 		};
 
-        // Support: IE 6 - 7 only
-        // getElementById is not reliable as a find shortcut
-        Expr.find["ID"] = function (id, context) {
-            if (typeof context.getElementById !== "undefined" && documentIsHTML) {
-                var node, i, elems,
-                    elem = context.getElementById(id);
+		// Support: IE 6 - 7 only
+		// getElementById is not reliable as a find shortcut
+		Expr.find["ID"] = function( id, context ) {
+			if ( typeof context.getElementById !== "undefined" && documentIsHTML ) {
+				var node, i, elems,
+					elem = context.getElementById( id );
 
-                if (elem) {
+				if ( elem ) {
 
-                    // Verify the id attribute
-                    node = elem.getAttributeNode("id");
-                    if (node && node.value === id) {
-                        return [elem];
-                    }
+					// Verify the id attribute
+					node = elem.getAttributeNode("id");
+					if ( node && node.value === id ) {
+						return [ elem ];
+					}
 
-                    // Fall back on getElementsByName
-                    elems = context.getElementsByName(id);
-                    i = 0;
-                    while ((elem = elems[i++])) {
-                        node = elem.getAttributeNode("id");
-                        if (node && node.value === id) {
-                            return [elem];
-                        }
-                    }
-                }
+					// Fall back on getElementsByName
+					elems = context.getElementsByName( id );
+					i = 0;
+					while ( (elem = elems[i++]) ) {
+						node = elem.getAttributeNode("id");
+						if ( node && node.value === id ) {
+							return [ elem ];
+						}
+					}
+				}
 
-                return [];
-            }
-        };
+				return [];
+			}
+		};
 	}
 
 	// Tag
@@ -1721,7 +1721,7 @@ function addCombinator( matcher, combinator, base ) {
 					return matcher( elem, context, xml );
 				}
 			}
-            return false;
+			return false;
 		} :
 
 		// Check against all ancestor/preceding elements
@@ -1766,7 +1766,7 @@ function addCombinator( matcher, combinator, base ) {
 					}
 				}
 			}
-            return false;
+			return false;
 		};
 }
 
@@ -2129,7 +2129,7 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 		// Reduce context if the leading compound selector is an ID
 		tokens = match[0] = match[0].slice( 0 );
 		if ( tokens.length > 2 && (token = tokens[0]).type === "ID" &&
-            context.nodeType === 9 && documentIsHTML && Expr.relative[tokens[1].type]) {
+				context.nodeType === 9 && documentIsHTML && Expr.relative[ tokens[1].type ] ) {
 
 			context = ( Expr.find["ID"]( token.matches[0].replace(runescape, funescape), context ) || [] )[0];
 			if ( !context ) {

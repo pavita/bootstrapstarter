@@ -53,16 +53,16 @@ var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 		}
 	}
 
-    if (chainable) {
-        return elems;
-    }
+	if ( chainable ) {
+		return elems;
+	}
 
-    // Gets
-    if (bulk) {
-        return fn.call(elems);
-    }
+	// Gets
+	if ( bulk ) {
+		return fn.call( elems );
+	}
 
-    return len ? fn(elems[0], key) : emptyGet;
+	return len ? fn( elems[ 0 ], key ) : emptyGet;
 };
 
 return access;

@@ -66,19 +66,19 @@ jQuery.extend( {
 				// Use proper attribute retrieval(#12072)
 				var tabindex = jQuery.find.attr( elem, "tabindex" );
 
-                if (tabindex) {
-                    return parseInt(tabindex, 10);
-                }
+				if ( tabindex ) {
+					return parseInt( tabindex, 10 );
+				}
 
-                if (
+				if (
 					rfocusable.test( elem.nodeName ) ||
-                    rclickable.test(elem.nodeName) &&
-                    elem.href
-                ) {
-                    return 0;
-                }
+					rclickable.test( elem.nodeName ) &&
+					elem.href
+				) {
+					return 0;
+				}
 
-                return -1;
+				return -1;
 			}
 		}
 	},
@@ -101,7 +101,7 @@ if ( !support.optSelected ) {
 	jQuery.propHooks.selected = {
 		get: function( elem ) {
 
-            /* eslint no-unused-expressions: "off" */
+			/* eslint no-unused-expressions: "off" */
 
 			var parent = elem.parentNode;
 			if ( parent && parent.parentNode ) {
@@ -111,7 +111,7 @@ if ( !support.optSelected ) {
 		},
 		set: function( elem ) {
 
-            /* eslint no-unused-expressions: "off" */
+			/* eslint no-unused-expressions: "off" */
 
 			var parent = elem.parentNode;
 			if ( parent ) {

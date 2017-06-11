@@ -2,13 +2,14 @@ define( [
 	"./core",
 	"./var/document",
 	"./var/documentElement",
-    "./var/rnothtmlwhite",
+	"./var/rnothtmlwhite",
 	"./var/slice",
 	"./data/var/dataPriv",
+	"./core/nodeName",
 
 	"./core/init",
 	"./selector"
-], function (jQuery, document, documentElement, rnothtmlwhite, slice, dataPriv) {
+], function( jQuery, document, documentElement, rnothtmlwhite, slice, dataPriv, nodeName ) {
 
 "use strict";
 
@@ -147,7 +148,7 @@ jQuery.event = {
 		}
 
 		// Handle multiple events separated by a space
-        types = ( types || "" ).match(rnothtmlwhite) || [""];
+		types = ( types || "" ).match( rnothtmlwhite ) || [ "" ];
 		t = types.length;
 		while ( t-- ) {
 			tmp = rtypenamespace.exec( types[ t ] ) || [];
@@ -229,7 +230,7 @@ jQuery.event = {
 		}
 
 		// Once for each type.namespace in types; type may be omitted
-        types = ( types || "" ).match(rnothtmlwhite) || [""];
+		types = ( types || "" ).match( rnothtmlwhite ) || [ "" ];
 		t = types.length;
 		while ( t-- ) {
 			tmp = rtypenamespace.exec( types[ t ] ) || [];
@@ -355,58 +356,58 @@ jQuery.event = {
 	},
 
 	handlers: function( event, handlers ) {
-        var i, handleObj, sel, matchedHandlers, matchedSelectors,
+		var i, handleObj, sel, matchedHandlers, matchedSelectors,
 			handlerQueue = [],
 			delegateCount = handlers.delegateCount,
 			cur = event.target;
 
 		// Find delegate handlers
-        if (delegateCount &&
+		if ( delegateCount &&
 
-            // Support: IE <=9
-            // Black-hole SVG <use> instance trees (trac-13180)
-            cur.nodeType &&
+			// Support: IE <=9
+			// Black-hole SVG <use> instance trees (trac-13180)
+			cur.nodeType &&
 
-            // Support: Firefox <=42
-            // Suppress spec-violating clicks indicating a non-primary pointer button (trac-3861)
-            // https://www.w3.org/TR/DOM-Level-3-Events/#event-type-click
-            // Support: IE 11 only
-            // ...but not arrow key "clicks" of radio inputs, which can have `button` -1 (gh-2343)
-            !( event.type === "click" && event.button >= 1 )) {
+			// Support: Firefox <=42
+			// Suppress spec-violating clicks indicating a non-primary pointer button (trac-3861)
+			// https://www.w3.org/TR/DOM-Level-3-Events/#event-type-click
+			// Support: IE 11 only
+			// ...but not arrow key "clicks" of radio inputs, which can have `button` -1 (gh-2343)
+			!( event.type === "click" && event.button >= 1 ) ) {
 
 			for ( ; cur !== this; cur = cur.parentNode || this ) {
 
 				// Don't check non-elements (#13208)
 				// Don't process clicks on disabled elements (#6911, #8165, #11382, #11764)
-                if (cur.nodeType === 1 && !( event.type === "click" && cur.disabled === true )) {
-                    matchedHandlers = [];
-                    matchedSelectors = {};
+				if ( cur.nodeType === 1 && !( event.type === "click" && cur.disabled === true ) ) {
+					matchedHandlers = [];
+					matchedSelectors = {};
 					for ( i = 0; i < delegateCount; i++ ) {
 						handleObj = handlers[ i ];
 
 						// Don't conflict with Object.prototype properties (#13203)
 						sel = handleObj.selector + " ";
 
-                        if (matchedSelectors[sel] === undefined) {
-                            matchedSelectors[sel] = handleObj.needsContext ?
+						if ( matchedSelectors[ sel ] === undefined ) {
+							matchedSelectors[ sel ] = handleObj.needsContext ?
 								jQuery( sel, this ).index( cur ) > -1 :
 								jQuery.find( sel, this, null, [ cur ] ).length;
 						}
-                        if (matchedSelectors[sel]) {
-                            matchedHandlers.push(handleObj);
+						if ( matchedSelectors[ sel ] ) {
+							matchedHandlers.push( handleObj );
 						}
 					}
-                    if (matchedHandlers.length) {
-                        handlerQueue.push({elem: cur, handlers: matchedHandlers});
+					if ( matchedHandlers.length ) {
+						handlerQueue.push( { elem: cur, handlers: matchedHandlers } );
 					}
 				}
 			}
 		}
 
 		// Add the remaining (directly-bound) handlers
-        cur = this;
+		cur = this;
 		if ( delegateCount < handlers.length ) {
-            handlerQueue.push({elem: cur, handlers: handlers.slice(delegateCount)});
+			handlerQueue.push( { elem: cur, handlers: handlers.slice( delegateCount ) } );
 		}
 
 		return handlerQueue;
@@ -476,7 +477,7 @@ jQuery.event = {
 
 			// For checkbox, fire native event so checked state will be right
 			trigger: function() {
-				if ( this.type === "checkbox" && this.click && jQuery.nodeName( this, "input" ) ) {
+				if ( this.type === "checkbox" && this.click && nodeName( this, "input" ) ) {
 					this.click();
 					return false;
 				}
@@ -484,7 +485,7 @@ jQuery.event = {
 
 			// For cross-browser consistency, don't fire native .click() on links
 			_default: function( event ) {
-				return jQuery.nodeName( event.target, "a" );
+				return nodeName( event.target, "a" );
 			}
 		},
 
@@ -640,19 +641,19 @@ jQuery.each( {
 
 		// Add which for click: 1 === left; 2 === middle; 3 === right
 		if ( !event.which && button !== undefined && rmouseEvent.test( event.type ) ) {
-            if (button & 1) {
-                return 1;
-            }
+			if ( button & 1 ) {
+				return 1;
+			}
 
-            if (button & 2) {
-                return 3;
-            }
+			if ( button & 2 ) {
+				return 3;
+			}
 
-            if (button & 4) {
-                return 2;
-            }
+			if ( button & 4 ) {
+				return 2;
+			}
 
-            return 0;
+			return 0;
 		}
 
 		return event.which;

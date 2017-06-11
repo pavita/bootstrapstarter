@@ -1,8 +1,8 @@
-define([
-    "../core"
-], function (jQuery, noGlobal) {
+define( [
+	"../core"
+], function( jQuery, noGlobal ) {
 
-    "use strict";
+"use strict";
 
 var
 
@@ -31,4 +31,4 @@ if ( !noGlobal ) {
 	window.jQuery = window.$ = jQuery;
 }
 
-});
+} );

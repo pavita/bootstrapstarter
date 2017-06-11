@@ -17,27 +17,27 @@ function winnow( elements, qualifier, not ) {
 		} );
 	}
 
-    // Single element
+	// Single element
 	if ( qualifier.nodeType ) {
 		return jQuery.grep( elements, function( elem ) {
 			return ( elem === qualifier ) !== not;
 		} );
-    }
-
-    // Arraylike of elements (jQuery, arguments, Array)
-    if (typeof qualifier !== "string") {
-        return jQuery.grep(elements, function (elem) {
-            return ( indexOf.call(qualifier, elem) > -1 ) !== not;
-        });
 	}
 
-    // Simple selector that can be filtered directly, removing non-Elements
-    if (risSimple.test(qualifier)) {
-        return jQuery.filter(qualifier, elements, not);
+	// Arraylike of elements (jQuery, arguments, Array)
+	if ( typeof qualifier !== "string" ) {
+		return jQuery.grep( elements, function( elem ) {
+			return ( indexOf.call( qualifier, elem ) > -1 ) !== not;
+		} );
 	}
 
-    // Complex selector, compare the two sets, removing non-Elements
-    qualifier = jQuery.filter(qualifier, elements);
+	// Simple selector that can be filtered directly, removing non-Elements
+	if ( risSimple.test( qualifier ) ) {
+		return jQuery.filter( qualifier, elements, not );
+	}
+
+	// Complex selector, compare the two sets, removing non-Elements
+	qualifier = jQuery.filter( qualifier, elements );
 	return jQuery.grep( elements, function( elem ) {
 		return ( indexOf.call( qualifier, elem ) > -1 ) !== not && elem.nodeType === 1;
 	} );
@@ -50,13 +50,13 @@ jQuery.filter = function( expr, elems, not ) {
 		expr = ":not(" + expr + ")";
 	}
 
-    if (elems.length === 1 && elem.nodeType === 1) {
-        return jQuery.find.matchesSelector(elem, expr) ? [elem] : [];
-    }
+	if ( elems.length === 1 && elem.nodeType === 1 ) {
+		return jQuery.find.matchesSelector( elem, expr ) ? [ elem ] : [];
+	}
 
-    return jQuery.find.matches(expr, jQuery.grep(elems, function (elem) {
-        return elem.nodeType === 1;
-    }));
+	return jQuery.find.matches( expr, jQuery.grep( elems, function( elem ) {
+		return elem.nodeType === 1;
+	} ) );
 };
 
 jQuery.fn.extend( {
