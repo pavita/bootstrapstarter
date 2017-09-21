@@ -34,6 +34,8 @@
   "private": true,
   "dependencies": {
     "jquery": "^3.2.1",
-    "matchHeight": "jquery-match-height#^0.7.0"
+    "matchHeight": "jquery-match-height#^0.7.0",
+    "bootstrap": "4.0.0-beta",
+    "popper.js": "^1.12.5"
   }
 }
